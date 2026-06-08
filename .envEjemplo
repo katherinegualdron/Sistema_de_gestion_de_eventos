@@ -1,0 +1,8 @@
+API_PORT=el puerto en la que se va a correr el api
+DEBUG=True
+DB_NAME=el nombre de la base
+DB_USER=nombre de usuario de la base
+DB_PASSWORD=contraseña de la base
+DB_HOST=direccion del servidor
+DB_PORT=El puerto
+DB_SCHEMA=Nombre de SCHEMA
