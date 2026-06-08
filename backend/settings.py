@@ -2,6 +2,20 @@ from datetime import timedelta
 from pathlib import Path
 from decouple import config
 
+
+def parse_debug(value):
+    value = str(value).strip().lower()
+    truthy_values = {'1', 'true', 'yes', 'y', 'on', 'debug', 'development', 'dev', 'local'}
+    falsy_values = {'0', 'false', 'no', 'n', 'off', 'release', 'production', 'prod'}
+
+    if value in truthy_values:
+        return True
+    if value in falsy_values:
+        return False
+
+    raise ValueError(f'Invalid DEBUG value: {value}')
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -9,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-l$m^r9nzw_ps3bq4$24so7d7jjj87c1i9^%u098vk4ur8qg&a8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool) 
+DEBUG = config('DEBUG', default='False', cast=parse_debug)
 
 ALLOWED_HOSTS = []
 
